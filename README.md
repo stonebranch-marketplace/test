@@ -1,236 +1,260 @@
-[**ut-sap-eventmonitor-linux**](https://github.com/stonebranch-marketplace/ut-sap-eventmonitor-linux)
-=====================================================================================================
-
 |     |     |
 | --- | --- |
-| **Associated Activities** |     |
-| **Date** | 26 June 2018 |
-| **Author** | Nils Buer |
-| **Revision** | 01  |
+| **Associated Activities** | ??? |
+| **Date** | 18 August 2020 |
+| **Author** | Dan Moran |
+| **Revision** | 1   |
+| **GitHub Name and Link** | [**ut-microsoft-teams-messaging**](https://github.com/stonebranch-marketplace/ut-microsoft-teams-messaging) |
 
 ![](https://stonebranch.atlassian.net/wiki/images/icons/grey_arrow_down.png)Revision History
 
 | **Revision** | **Date** | **Author** | **Changes** |
 | --- | --- | --- | --- |
-| 00  | 20180626 | Nils Buer | Initial Document (WIP) |
-| 01  | 20180628 | Nils Buer | Final Document |
+| 1   | 20200818 | Dan Moran | First draft |
 
 * * *
 
-### Abstract
-
-The here described Universal Tasks Queries the SAP Event history table for the selected SAP Event & Parameter. If the Event is found, it gets confirmed, so that it is not triggered again. Optionally a task can be launched, based on the occurrence of an Event & Parameter.
-
-* * *
-
-### Table of Contents
+Table of Contents
+=================
 
 ![](https://stonebranch.atlassian.net/wiki/images/icons/grey_arrow_down.png)TOC
 
-/\*<!\[CDATA\[\*/ div.rbtoc1598884596824 {padding: 0px;} div.rbtoc1598884596824 ul {list-style: disc;margin-left: 0px;} div.rbtoc1598884596824 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
+/\*<!\[CDATA\[\*/ div.rbtoc1598884828543 {padding: 0px;} div.rbtoc1598884828543 ul {list-style: disc;margin-left: 0px;} div.rbtoc1598884828543 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
 
-*   [ut-sap-eventmonitor-linux](#Documentation:SAPEventMonitoringUniversalTask(Linux)-ut-sap-eventmonitor-linux)
-    *   [Abstract](#Documentation:SAPEventMonitoringUniversalTask(Linux)-Abstract)
-    *   [Table of Contents](#Documentation:SAPEventMonitoringUniversalTask(Linux)-TableofContents)
-*   [1 Disclaimer](#Documentation:SAPEventMonitoringUniversalTask(Linux)-1Disclaimer)
-*   [2 Scope](#Documentation:SAPEventMonitoringUniversalTask(Linux)-2Scope)
-*   [3 Introduction](#Documentation:SAPEventMonitoringUniversalTask(Linux)-3Introduction)
-*   [4 Installation](#Documentation:SAPEventMonitoringUniversalTask(Linux)-4Installation)
-    *   [4.1 Software Requirements](#Documentation:SAPEventMonitoringUniversalTask(Linux)-4.1SoftwareRequirements)
-    *   [4.2 Installation Steps](#Documentation:SAPEventMonitoringUniversalTask(Linux)-4.2InstallationSteps)
-*   [5 Universal Task Configuration](#Documentation:SAPEventMonitoringUniversalTask(Linux)-5UniversalTaskConfiguration)
-*   [6 Universal Tasks for SAP Event monitoring](#Documentation:SAPEventMonitoringUniversalTask(Linux)-6UniversalTasksforSAPEventmonitoring)
-    *   [6.1 Task Monitor Trigger mode](#Documentation:SAPEventMonitoringUniversalTask(Linux)-6.1TaskMonitorTriggermode)
-*   [7 Test Cases](#Documentation:SAPEventMonitoringUniversalTask(Linux)-7TestCases)
-*   [8 Document References](#Documentation:SAPEventMonitoringUniversalTask(Linux)-8DocumentReferences)
+*   [Disclaimer](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-Disclaimer)
+*   [Introduction](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-Introduction)
+*   [Overview](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-Overview)
+*   [Software Requirements](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-SoftwareRequirements)
+    *   [Software Requirements for Linux Agent](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-SoftwareRequirementsforLinuxAgent)
+    *   [Python Integration](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-PythonIntegration)
+        *   [Check the Current Python Version](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-ChecktheCurrentPythonVersion)
+        *   [Add the Required Python Modules](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-AddtheRequiredPythonModules)
+    *   [Software Requirements for Windows Agent](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-SoftwareRequirementsforWindowsAgent)
+*   [Incoming Webhooks in MS Teams](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-IncomingWebhooksinMSTeams)
+    *   [Adding an Incoming Webhook to an MS Teams Channel](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-AddinganIncomingWebhooktoanMSTeamsChannel)
+    *   [Incoming Webhooks Key Features](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-IncomingWebhooksKeyFeatures)
+    *   [Feature](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-Feature)
+*   [Import Microsoft Teams Notifications Forwarding Universal Template](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-ImportMicrosoftTeamsNotificationsForwardingUniversalTemplate)
+*   [Configure Microsoft Teams Notifications Forwarding Universal Tasks](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-ConfigureMicrosoftTeamsNotificationsForwardingUniversalTasks)
+    *   [Field Descriptions for MS Teams Notifications Forwarding](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-FieldDescriptionsforMSTeamsNotificationsForwarding)
+*   [Test Cases](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-TestCases)
+*   [Document References](#UniversalAutomationCenterSupportforMicrosoftTeamsNotificationsForwarding-NEW-DocumentReferences)
 
-1 Disclaimer
+Disclaimer
+==========
+
+No support or warranty is provided by Stonebranch GmbH for this document and the herein described Universal Template / Universal Tasks. The use of this document and the Universal Template / Universal Tasks is at your own risk.
+
+Before using this information in a production system, please perform extensive testing. Stonebranch GmbH assumes no liability for damage caused by the performance of the Universal Tasks.
+
+* * *
+
+Introduction
 ============
 
-No support and no warranty are provided by Stonebranch GmbH for this document and the related Universal Task. The use of this document and the related Universal Task is on your own risk.
+This document tells you how to use Universal Tasks for Microsoft Teams Notifications Forwarding, which allow you to send messages to an existing channel of Microsoft Teams. As a result, you can integrate this solution in Universal Automation Center to notify users for UAC result on Microsoft Teams.
 
-Before using this task in a production system, please perform extensive testing.
-
-Stonebranch GmbH assumes no liability for damage caused by the performance of the Universal Tasks
+If more tasks are created in the future, this document will be updated accordingly.
 
 * * *
 
-2 Scope
-=======
+Overview
+========
 
-This document provides a documentation how to install and use the Universal Tasks for SAP Event Monitoring.
+Some details about Universal Tasks for Microsoft Teams Notifications Forwarding:
+
+*   Supports logging functionality, by selecting the log level by yourself (INFO, DEBUG, etc)
+    
+*   Uses pymsteams python library
+    
+*   Accepts as input parameters the log level, an incoming webhook a title and a text of the message
+    
+*   Set up the connection from UAC to MS Teams channel using webhooks
+    
+*   Set up the message is about to send and forwards it to the channel
+    
+*   No authentication is supported
+    
+*   This Universal Task supports both Universal Agent for Linux/Unix and Windows and has been tested in both systems:
+    
 
 * * *
 
-3 Introduction
-==============
+Software Requirements
+=====================
 
-Some details about the Universal Tasks for SAP Event Monitoring
+Software Requirements for Linux Agent
+-------------------------------------
 
-*   The Universal Task will monitor the SAP Event history table for a certain event and related parameter.
+*   [Python 3.6](https://stonebranch.atlassian.net/wiki/spaces/MAR/pages/1619951628/Universal+Automation+Center+Support+for+Microsoft+Teams+Notifications+Forwarding+-+NEW#Python-Integration)
     
-*   For the Parameters wildcards “\*” are supported
+*   For Python, the following modules are required:
     
-*   The Event is retrieved by calling the USAP command: “display event\_history”
+    *   _sys, for system-specific parameters and functions_
+        
+    *   _pymsteams, to interact with a Microsoft Teams channel_
+        
+    *   _logging, for python loglevel support_  
+        _**Note: Only the module pymsteams needs to be added via python installer**_  
+        _➔ pip install pymsteams_
+        
+*   Universal Controller V6.4.7.0 or higher
     
-*   Once the Event and Parameter have been identified the Event is confirmed in SAP, so that the monitor will not trigger a second time (optional setting)
-    
-*   Once the Event and Parameter have been identified and confirmed the assigned task is started using the CLI command: ops-task-launch
-    
-*   If no task is specified, the UT runs in Monitoring mode and goes to success in case an Event has been identified
-    
-*   Currently only SAP connections via the sapnwrfc.ini destination file is supported. Please contact Stonebranch, if a Version for standard SAP Application Server connection is required (minimal efforts).
-    
-*   You can create a Task Monitor trigger out of this task by adding an action to the Universal Task, which re-started the task in case of success.
-    
-*   You can set different log-levels for the Universal task, providing you more information in case of issues
-    
-*   This Universal Task been added to the CTK-Conversion tool to map automatically Tivoli Workload Scheduler Sap Monitors called: eventProvider="SapMonitor" towards this UT.
+*   Universal Agent V6.5.0.0 or higher installed on a Linux/Windows Server
     
 
-|     |     |     |
-| --- | --- | --- |
-| **Command** | **UT Name** | **Description** |
+Python Integration
+------------------
+
+_pymsteams_ \[2\] is a Python Wrapper Library to send requests to Microsoft Teams Webhooks. Microsoft refers to these messages as Connector Cards. A message can be sent with only the main Connector Card, or additional sections can be included into the message. This library uses Webhook Connectors for Microsoft Teams.
+
+### Check the Current Python Version
+
+_python -V (Note: Capital “V”)_
+
+The Linux Agent must have Python version 3.6 or later. If it has a lower version of Python, or no Python at all, either:
+
+*   Upgrade your Python to version 3.6.
+    
+*   Install the Universal Agent with the Python binding option (--python yes). This option will install Python 3.6. and the agent.
+    
+
+For example:
+
+```
+sudo sh ./unvinst --network_provider oms --oms_servers 7878@192.168.88.12 --oms_port 7878 --oms_autostart no --ac_netname OPSAUTOCONF --opscli yes --python yes
+```
+
+### Add the Required Python Modules
+
+For Python, the following modules are required:
+
+*   _pip install pymsteams or in case of universal Agent with python binding: /opt/universal/python3.6/bin/python3 -m pip install pymsteams_  
+    Only run these if not already available:
+    
+    *   _pip install sys_
+        
+    *   _pip install logging_
+        
+
+In a command shell, run as sudo or root
+
+Software Requirements for Windows Agent
+---------------------------------------
+
+(If there are no requirements, the document should say so.)
 
 * * *
 
-4 Installation
-==============
+Incoming Webhooks in MS Teams
+=============================
 
-4.1 Software Requirements
--------------------------
+Incoming webhooks are special type of Connectors in MS Teams that provide a simple way for an external app to share content in team channels. They are often used as tracking and notification tools.
 
-**Universal Task name:** _ut\_sap\_eventmonitor\_linux_  
-**Related UAC XML Files for template and task:** _Github repository_  
-**Software used:**  
-For the set-up you need:
+MS Teams provides a unique URL to which you send a JSON payload with the message that you want to POST, typically in a card format. Cards are user-interface (UI) containers that contain content and actions related to a single topic and are a way to present message data in a consistent way.
 
-1.  Universal Connector for SAP installed on a Linux Server
+MS Teams uses cards within three capabilities:
+
+*   Bots
     
-2.  An SAP destination configured in sapnwrfc.ini (/opt/universal/uagsrv)
+*   Messaging extensions
     
-3.  The Universal Task is based on a bash shell script and awk
+*   Connectors
     
 
-4.2 Installation Steps
-----------------------
+Adding an Incoming Webhook to an MS Teams Channel
+-------------------------------------------------
 
-The following describes the installation steps:
+If your MS Team's Settings => Member permissions => Allow members to create, update, and remove connectors is selected, any team member can add, modify, or delete a connector.\[1\]
 
-**1\. Import the Universal Task including the Universal Template to your Controller**
+1.  Navigate to the channel where you want to add the webhook and select (•••) More Options from the top navigation bar.
+    
+2.  Choose Connectors from the drop-down menu and search for Incoming Webhook.
+    
+3.  Select the Configure button, provide a name, and, optionally, upload an image avatar for your webhook.
+    
+4.  The dialog window will present a unique URL that will map to the channel. Make sure that you copy and save the URL—you will need to provide it to the outside service.
+    
+5.  Select the Done button. The webhook will be available in the team channel.
+    
 
-Go to “All Tasks” and load via the Import functionality the Universal Task configuration into the Controller.
+Incoming Webhooks Key Features
+------------------------------
 
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image1%20(2).png?api=v2)![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image2.png?api=v2)
+| **Feature**<br>----------- | **Description** |
+| --- | --- |
+| Scoped Configuration | Incoming webhooks are scoped and configured at the channel level (e.g., outgoing webhooks are scoped and configured at the team level). |
+| Secure resource definitions | Messages are formatted as JSON payloads. This declarative messaging structure prevents the injection of malicious code as there is no code execution on the client. |
+| Actionable messaging support | If you choose to send messages via cards, you must use the actionable message card format. Actionable message cards are supported in all Office 365 groups including Teams. |
+| Independent HTTPS messaging support | Cards are a great way to present information in a clear and consistent way. Any tool or framework that can send HTTPS POST requests can send messages to Teams via an incoming webhook. |
+| Markdown support | All text fields in actionable messaging cards support basic Markdown. Don't use HTML markup in your cards. HTML is ignored and treated as plain text. |
 
 * * *
 
-5 Universal Task Configuration
-==============================
+Import Microsoft Teams Notifications Forwarding Universal Template
+==================================================================
 
-**1\. Activate: Resolvable Credentials in Universal Automation Center:**
+You must import the XML file provided to you by Stonebranch onto your Universal Controller.
 
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image3.png?api=v2)
+This is the file containing the Universal Template (and one or more Universal Tasks) that Stonebranch exported from their Universal Controller.
 
-**2\. Fill Out the Universal Task for each SAP Event and Parameter to monitor:**
+1.  Log in to your Controller.
+    
+2.  Go to Automation Center > Tasks > All Tasks.
+    
+3.  Right-click the Task Name header at the top of the list and click Import.
+    
+4.  On the Import pop-up dialog, enter the name of the directory containing the file(s) to import, and then click OK.
+    
 
-In the example the SAP Event: UAC\_TEST with Parameter: UAC is monitored.  
-If the Event occurs in the SAP Event history table with status “NEW” the Task “Sleep 600” is launched and the Event is confirmed in SAP.
+![](https://raw.githubusercontent.com/stonebranch-marketplace/ut-microsoft-teams-messaging/master/images/image2.png)![](https://raw.githubusercontent.com/stonebranch-marketplace/ut-microsoft-teams-messaging/master/images/image3.png)
 
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image4.png?api=v2)
+The imported Universal Template will appear on your list of Universal Templates (Configuration > Universal Templates).
 
-Fill out or select the required Credentials for SAP and the Universal Controller cli (oms credentials)  
-Example: Universal Controller cli (oms credentials) credentials:
-
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image5.png?api=v2)
-
-Example: SAP Credentials:
-
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image6.png?api=v2)
-
-* * *
-
-6 Universal Tasks for SAP Event monitoring
-==========================================
-
-The following chapter describes the provided SAP Event monitoring UT.
-
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image7.png?api=v2)
-
-**Field Description:**
-
-|     |     |     |
-| --- | --- | --- |
-| **Field** | **Required** | **Description** |
-| Agent | Yes | Linux Universal Agent to run the USAP commands and bash shell script. |
-| Agent Cluster | optional | Optional Agent Cluster for load balancing |
-| Client | Yes | SAP Client to connect to e.g. 100 |
-| dest | Yes | SAP destination in the file: /opt/universal/uagsrv/sapnwrfc.ini |
-| Usapdir | Yes | Directory where the USAP binary is stored default is: /opt/universal/usap/bin |
-| opsclidir | Yes | Directory where the CLI is stored default is: /opt/universal/opscli/bin/ |
-| Event ID | Yes | Name of the Event to Scan for |
-| Event Parameter | optional | Name of the parameter to scan for. Note: wildcard “_” is supported ua_ searches for all event parameters beginning with ua. If no Event Parameters is provided any Event Parameter will match |
-| Event Status to Select | Yes | NEW – scan only for new Events (default) Confirmed – scan only for confirmed Events Any Status – scan for any status of Events |
-| oms port | Yes | Default is 7878 |
-| Taskname | optional | Name of the task to start in case a new event has been identified. If no task is specified, the UT runs in Monitoring mode and goes to success in case an Event has been identified. E.g. you can add the Event Monitor to a Workflow (Note: in that case remove the action, which automatically re-starts the UT in case of status “success”) |
-| oms hostname | Yes | Hostname or IP of the OMS |
-| Confirm Events or Leave status as new | Yes | Default is “confirm events”. This ensures that the same event is only triggers the event monitor once. |
-
-**Event configuration in SAP**
-
-The SAP Task Monitor scans for Events in the SAP Event history. An Event only shows up in the Event history if an appropriate event criteria profile has been set-up in SAP by using transaction SM62. (Note: optionally a criteria profile can also be set-up via an SAP Task of command group “Set CM Profile” in the Universal Controller). The following screen shows an example of the set-up in SAP using SM62:
-
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image9.png?api=v2)
-
-**Event History table:**
-
-The following provides and example of the Event history table in SAP (SM62).  
-Only Event showing up here can trigger the SAP Event Monitor UT.
-
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image10.png?api=v2)
-
-### 6.1 Task Monitor Trigger mode
-
-You can create a Task Monitor trigger out of this task by adding an action to the Universal Task, which re-started the task in case of success.
-
-![](https://stonebranch.atlassian.net/wiki/download/attachments/1659994117/image11.png?api=v2)
+Under Automation Center > Universal Tasks, a Universal Task type - based on the Universal Template - will appear.
 
 * * *
 
-7 Test Cases
-============
+Configure Microsoft Teams Notifications Forwarding Universal Tasks
+==================================================================
+
+For the new Universal Task type, create a new task and enter the task-specific Details that were created in the Universal Template.
+
+![](https://raw.githubusercontent.com/stonebranch-marketplace/ut-microsoft-teams-messaging/master/images/image4.png)
+
+* * *
+
+Field Descriptions for MS Teams Notifications Forwarding
+--------------------------------------------------------
+
+| **Field** | **Description** |
+| --- | --- |
+| Agent | The Agent that runs the Python script assigned to the Universal Task |
+| Logging Level | log level: DEBUG, INFO, WARNING, ERROR, CRITICAL |
+| Incoming Webhook | The incoming web hook of Microsoft Teams channel |
+| Message Title | The title of the message sent to Microsoft Teams channel |
+| Message Text | The text of the message sent to Microsoft Teams channel |
+
+* * *
+
+Test Cases
+==========
 
 The following basic test cases has been performed:
 
-|     |     |     |
+| **Case#** | **Assumed behavior** | **Result** |
 | --- | --- | --- |
-| **Case#** | **Assumed behaviour** | **Result** |
-| **Scan for Event and Parameter**<br><br>Event: UAC\_TEST  <br>Parameter: UAC  <br>Task to Launch: Sleep 600 | #INFO# ### Monitoring for SAP EVENT:UAC\_TEST and Parameter:UAC<br><br>##INFO #EVENT:UAC\_TEST and Parameter:UAC in STATUS N found.<br><br>Task Type parameter not specified, defaulting to ALL.<br><br>Successfully launched the Timer task "Sleep 600" with task instance sys\_id 1530192249641046777S2VLE5WXSRS4Z.<br><br>opscmd-complete<br><br>##INFO# Task: Sleep 600 launched | Correct |
-| **Scan for Event only**<br><br>Event: UAC\_TEST  <br>Parameter: -  <br>Task to Launch: Sleep 600 | #INFO# ### Monitoring for SAP EVENT:UAC\_TEST and Parameter:<br><br>##INFO #EVENT:UAC\_TEST and Parameter: in STATUS N found.<br><br>Task Type parameter not specified, defaulting to ALL.  <br>Successfully launched the Timer task "Sleep 600" with task instance sys\_id 153019224964120177770IUD521Q1F1I.<br><br>opscmd-complete<br><br>##INFO# Task: Sleep 600 launched | Correct |
-| Scan for Event and Parameter with wildcard<br><br>Event: UAC\_TEST  <br>Parameter: U\*  <br>Task to Launch: Sleep 600 | ##INFO# ### Monitoring for SAP EVENT:UAC\_TEST and Parameter:UAC<br><br>##INFO# EVENT:UAC\_TEST and Parameter:UAC in STATUS N found.<br><br>##INFO# Task launched: Sleep\_${env}\_600 | Correct |
-| **Scan for Event and Parameter with wildcard**<br><br>Event: UAC\_TEST  <br>Parameter: K\*  <br>Task to Launch: Sleep 600 | Task Monitor should stay in running mode because K\* as Parameter does not exist.<br><br>#INFO# ### Monitoring for SAP EVENT:UAC\_TEST and Parameter:K\* | Correct |
-| Scan for Event and Parameter no Task “Monitoring Mode”<br><br>Event: UAC\_TEST  <br>Parameter: UAC  <br>Task to Launch: - | #INFO# ### Monitoring for SAP EVENT:UAC\_TEST and Parameter:UAC<br><br>##INFO #EVENT:UAC\_TEST and Parameter:UAC in STATUS N found.<br><br>##INFO #Monitoring Mode, No task to launch specified | Correct |
-| **Scan for Event with wildcard**<br><br>Event: UAC\_\*  <br>Parameter: UAC  <br>Task to Launch: - | #INFO# ### Monitoring for SAP EVENT:UAC\_\* and Parameter:UAC<br><br>##INFO #EVENT:UAC\_\* and Parameter:UAC in STATUS N found.<br><br>##INFO #Monitoring Mode, No task to launch specified | Correct |
-| Force finish the Monitor UT | Monitor has stopped and no new usap process is started. | Correct |
-| Wrong: Client | UNV3087I Universal Connector component 1530192277 registered with local Broker.<br><br>UNV0668I Establishing RFC connection.<br><br>UNV0629E SAP logon error: Client 003 is not available in this system<br><br>UNV0616E Universal Connector ending unsuccessfully with exit code 202. | Correct |
-| Wrong: dest |     | Correct |
-| Wrong: Client | UNV3087I Universal Connector component 1530192982 registered with local Broker.<br><br>UNV0668I Establishing RFC connection.<br><br>UNV0629E SAP logon error: Client 003 is not available in this system<br><br>UNV0616E Universal Connector ending unsuccessfully with exit code 202.<br><br>##ERROR# ### exitcode =202 |     |
-| Wrong: Usapdir | ##ERROR# /opt/universal/usap/bins does not exists. | Correct |
-| Wrong: opsclidir | ##ERROR# /opt/universal/opscli/bin/s does not exists. | Correct |
-| launch task name that does not exists | ##ERROR#in function launch\_task No tasks found matching with name: Sleep\_${env}\_6000 | Correct |
-| Wrong: oms port | Not yet tested |     |
-| Wrong: oms hostname | Not yet tested |     |
-| Confirm Events or | Not yet tested |     |
-| Leave status as new | Not yet tested |     |
-| NEW – scan only for new Events (default) | Not yet tested |     |
-| Confirmed – scan only for confirmed Events | Not yet tested |     |
-| Any Status – scan for any status of Events | Not yet tested |     |
+| Set as Incoming Webhook an invalid uri | 1.  The application should stop and exit with message UAC failed to forward a message in this MS Teams channel.<br>    <br>2.  No message should be sent. | Correct |
+| Set as Incoming Webhook a valid uri | 1.  A message should be sent. | Correct |
 
 * * *
 
-8 Document References
-=====================
+Document References
+===================
 
-There are no document references.
+This document references the following documents:
 
-* * *
+| **Ref#** | **Description** |
+| --- | --- |
+| \[1\] Microsoft Teams Webhooks | [https://docs.microsoft.com/enus/microsoftteams/platform/webhooks-andconnectors/how-to/add-incoming-webhook](https://docs.microsoft.com/enus/microsoftteams/platform/webhooks-andconnectors/how-to/add-incoming-webhook) |
+| \[2\] pymsteams | [https://pypi.org/project/pymsteams/](https://pypi.org/project/pymsteams/) |
