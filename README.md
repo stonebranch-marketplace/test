@@ -1,10 +1,13 @@
-Start-up Guide
+**Start-up Guide**
+=================
 
-Application Automation for OPENSHIFT
+**Application Automation for OPENSHIFT**
+=================
 
-Securely Transfer Files to and from Applications Running on OPENSHIFT
+**Securely Transfer Files to and from Applications Running on OPENSHIFT**
+=================
 
-Table of Contents {#table-of-contents .list-paragraph}
+Table of Contents
 =================
 
 
