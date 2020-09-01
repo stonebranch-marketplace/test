@@ -64,8 +64,8 @@ Table of Contents {#table-of-contents .list-paragraph}
 
 [5. About Stonebranch](#about-stonebranch)
 
-1. Introduction
-============
+1 Introduction
+==============
 
 This start-up guide will describe a use case for how to securely
 transfer business data located on an on-premise Linux server to an
@@ -81,7 +81,7 @@ Paper](https://www.stonebranch.com/solutions/hybrid-cloud-file-transfers/)
 \[8\].
 
 1.1 Use Case Description
---------------------
+------------------------
 
 To improve scalability, reduce resource consumption and shorten the time
 to develop, test, and roll-out new applications, many IT companies are
@@ -110,7 +110,7 @@ in OPENSHIFT. As a result, all users connected to the new-flash
 application will see the new published webpage information.
 
 1.2 Key features
-------------
+----------------
 
 This start-up use case focuses on file transfer from an on-premise
 server to a group of pods. The solution can also support many additional
@@ -137,8 +137,8 @@ scenarios. The following are its key features:
 
 -   High availability
 
-Solution Architecture
----------------------
+1.3 Solution Architecture
+-------------------------
 
 The Universal Automation Center (UAC) is a web-based enterprise
 scheduler, generally available as SaaS in the Cloud or on-premise.
@@ -166,14 +166,14 @@ For applications that provide an API like SAP, databases, cloud storage
 services, etc., no agent is required, as they are scheduled via their
 corresponding API.
 
-General Description of File Transfer Process
---------------------------------------------
+1.4 General Description of File Transfer Process
+------------------------------------------------
 
 The architecture below outlines how data is transferred from an
 on-premise server to all instances of an application running on
 OPENSHIFT. A transfer from the mainframe is performed in a similar way.
 
-### Graphic Overview
+### 1.4.1 Graphic Overview
 
 ![](image/image1.png)
 
