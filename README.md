@@ -7,9 +7,7 @@
 **Securely Transfer Files to and from Applications Running on OPENSHIFT**
 =================
 
-Table of Contents
-=================
-
+##Table of Contents
 
 [Table of Contents](#table-of-contents)
 
