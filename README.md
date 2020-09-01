@@ -13,7 +13,7 @@ Table of Contents {#table-of-contents .list-paragraph}
 
 [1. Introduction 4](#_Toc49848860)
 
-[1.1. Use Case Description 4](#use-case-description)
+    [1.1. Use Case Description 4](#use-case-description)
 
 [1.2. Key features 4](#key-features)
 
@@ -22,52 +22,36 @@ Table of Contents {#table-of-contents .list-paragraph}
 [1.4. General Description of File Transfer Process
 7](#general-description-of-file-transfer-process)
 
-[1.4.1. Graphic Overview 7](#graphic-overview)
+    [1.4.1. Graphic Overview 7](#graphic-overview)
 
-[1.4.2. Process Steps 8](#process-steps)
+    [1.4.2. Process Steps 8](#process-steps)
 
 [2. How to Get Started 10](#how-to-get-started)
 
 [2.1. Prerequisites 10](#prerequisites)
 
-[2.1.1. Universal Automation Center 10](#universal-automation-center)
-
-[2.1.2. Universal Data Mover License Key
-10](#universal-data-mover-license-key)
-
-[2.1.3. Universal Agent 6.8.x or Above
-11](#universal-agent-6.8.x-or-above)
-
-[2.1.4. OPENSHIFT 4.x 11](#openshift-4.x)
-
-[2.1.5. Linux Server 11](#linux-server)
+    [2.1.1. Universal Automation Center 10](#universal-automation-center)
+    [2.1.2. Universal Data Mover License Key 10](#universal-data-mover-license-key)
+    [2.1.3. Universal Agent 6.8.x or Above 11](#universal-agent-6.8.x-or-above)
+    [2.1.4. OPENSHIFT 4.x 11](#openshift-4.x)
+    [2.1.5. Linux Server 11](#linux-server)
 
 [2.2. Configuration Steps 11](#configuration-steps)
 
-[2.3. Set Up a File Transfer Task in Universal Controller
-11](#set-up-a-file-transfer-task-in-universal-controller)
+[2.3. Set Up a File Transfer Task in Universal Controller 11](#set-up-a-file-transfer-task-in-universal-controller)
 
-[2.3.1. Define a new Agent Cluster for the OPENSHIFT application
-"newsflash"
-12](#define-a-new-agent-cluster-for-the-openshift-application-newsflash)
+    [2.3.1. Define a new Agent Cluster for the OPENSHIFT application "newsflash" 12](#define-a-new-agent-cluster-for-the-openshift-application-newsflash)
+    [2.3.2. Configure the File Transfer Task 12](#configure-the-file-transfer-task)
 
-[2.3.2. Configure the File Transfer Task
-12](#configure-the-file-transfer-task)
+[2.4. Add the Universal Sidecar Container to the Application Deployment Script 14](#add-the-universal-sidecar-container-to-the-application-deployment-script)
 
-[2.4. Add the Universal Sidecar Container to the Application Deployment
-Script
-14](#add-the-universal-sidecar-container-to-the-application-deployment-script)
-
-[2.5. Deploy the OPENSHIFT Application
-19](#deploy-the-openshift-application)
+[2.5. Deploy the OPENSHIFT Application 19](#deploy-the-openshift-application)
 
 [2.6. Running the File Transfer 21](#running-the-file-transfer)
 
-[2.7. Options to Trigger the File Transfer Scenario
-22](#options-to-trigger-the-file-transfer-scenario)
+[2.7. Options to Trigger the File Transfer Scenario 22](#options-to-trigger-the-file-transfer-scenario)
 
-[2.8. Integration of File Transfer into Microservices Architectures
-23](#integration-of-file-transfer-into-microservices-architectures)
+[2.8. Integration of File Transfer into Microservices Architectures 23](#integration-of-file-transfer-into-microservices-architectures)
 
 [2.9. Security and Auditability 23](#security-and-auditability)
 
