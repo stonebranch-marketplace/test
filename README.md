@@ -11,30 +11,40 @@ Table of Contents {#table-of-contents .list-paragraph}
 [Table of Contents](#table-of-contents)
 
 [1. Introduction](#_Toc49848860)
-      [1.1. Use Case Description](#use-case-description)
+
+[1.1. Use Case Description](#use-case-description)
 
 [1.2. Key features](#key-features)
 
 [1.3. Solution Architecture](#solution-architecture)
 
 [1.4. General Description of File Transfer Process](#general-description-of-file-transfer-process)
-    [1.4.1. Graphic Overview](#graphic-overview)
-    [1.4.2. Process Steps](#process-steps)
+
+[1.4.1. Graphic Overview](#graphic-overview)
+
+[1.4.2. Process Steps](#process-steps)
 
 [2. How to Get Started](#how-to-get-started)
 
 [2.1. Prerequisites](#prerequisites)
-    [2.1.1. Universal Automation Center](#universal-automation-center)
-    [2.1.2. Universal Data Mover License Key](#universal-data-mover-license-key)
-    [2.1.3. Universal Agent 6.8.x or Above](#universal-agent-6.8.x-or-above)
-    [2.1.4. OPENSHIFT 4.x](#openshift-4.x)
-    [2.1.5. Linux Server](#linux-server)
+
+[2.1.1. Universal Automation Center](#universal-automation-center)
+
+[2.1.2. Universal Data Mover License Key](#universal-data-mover-license-key)
+
+[2.1.3. Universal Agent 6.8.x or Above](#universal-agent-6.8.x-or-above)
+
+[2.1.4. OPENSHIFT 4.x](#openshift-4.x)
+
+[2.1.5. Linux Server](#linux-server)
 
 [2.2. Configuration Steps](#configuration-steps)
 
 [2.3. Set Up a File Transfer Task in Universal Controller](#set-up-a-file-transfer-task-in-universal-controller)
-    [2.3.1. Define a new Agent Cluster for the OPENSHIFT application "newsflash"](#define-a-new-agent-cluster-for-the-openshift-application-newsflash)
-    [2.3.2. Configure the File Transfer Task](#configure-the-file-transfer-task)
+
+[2.3.1. Define a new Agent Cluster for the OPENSHIFT application "newsflash"](#define-a-new-agent-cluster-for-the-openshift-application-newsflash)
+
+[2.3.2. Configure the File Transfer Task](#configure-the-file-transfer-task)
 
 [2.4. Add the Universal Sidecar Container to the Application Deployment Script](#add-the-universal-sidecar-container-to-the-application-deployment-script)
 
