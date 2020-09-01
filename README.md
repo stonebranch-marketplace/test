@@ -64,7 +64,7 @@ Table of Contents {#table-of-contents .list-paragraph}
 
 [5. About Stonebranch](#about-stonebranch)
 
-Introduction
+1. Introduction
 ============
 
 This start-up guide will describe a use case for how to securely
@@ -80,7 +80,7 @@ on OPENSHIFT, and vice versa. For more info, refer to the solution paper
 Paper](https://www.stonebranch.com/solutions/hybrid-cloud-file-transfers/)
 \[8\].
 
-Use Case Description
+1.1 Use Case Description
 --------------------
 
 To improve scalability, reduce resource consumption and shorten the time
@@ -109,7 +109,7 @@ containing a web server instance started for the news-flash application
 in OPENSHIFT. As a result, all users connected to the new-flash
 application will see the new published webpage information.
 
-Key features
+1.2 Key features
 ------------
 
 This start-up use case focuses on file transfer from an on-premise
@@ -175,11 +175,9 @@ OPENSHIFT. A transfer from the mainframe is performed in a similar way.
 
 ### Graphic Overview
 
-![](media/image4.png){width="7.266452318460193in"
-height="5.931619641294838in"}
+![](image/image1.png)
 
-Figure : Provide Business Data from an On-Premise Server to an
-Application Running in a Pod
+Figure 1 : Provide Business Data from an On-Premise Server to an Application Running in a Pod
 
 ### Process Steps
 
@@ -190,7 +188,7 @@ Application Running in a Pod
 | 1 | **Linux Server** | A Universal Agent needs to be installed on the server that sends/receives files from an application distributed in an OPENSHIFT pod. This Agent can send files to any other agent installed in the Data Center. The Agent can also connect to any public could storage for file transfer. |
 |**OPENSHIFT PaaS**| &nbsp; | &nbsp; |
 | 2 | **Reverse Proxy** | Due to security regulations, all communication from and to OPENSHIFT should be sent via reverse https proxy. |
-| 3 | **Application Instance cluster** | An application is deployed in a pod.<br/>If the application load increases, the OPENSHIFT orchestration platform allows users to dynamically scale up the number of application instances by starting an additional pod.<br/>In this example, the number of pods is increased in OPENSHIFT from 2 to 4, and the Universal Agents installed in the pods are added dynamically to the Universal Controller agent cluster related to the application.<br/>If the load decreases, application instances, i.e. pods can be stopped in OPENSHIFT. |
+| 3 | **Application Instance cluster** | An application is deployed in a pod.<br/>If the application load increases, the OPENSHIFT orchestration platform allows users to dynamically scale up the number of application instances by starting an additional pod.<br/> ![](image/image2.png)<br/> Figure 2: Scaling Up from 2 to 4 Application Instances in OPENSHIFT and Automatically in Universal Controller. <br/>In this example, the number of pods is increased in OPENSHIFT from 2 to 4, and the Universal Agents installed in the pods are added dynamically to the Universal Controller agent cluster related to the application.<br/>If the load decreases, application instances, i.e. pods can be stopped in OPENSHIFT. |
 | 4 | **Pod with Sidecar Container** | All pods contain a sidecar container with a Universal OPENSHIFT Agent. Each sidecar container is based on the Red Hat UBI image with a Universal OPENSHIFT Agent installed inside. The latest version of the image can be retrieved from the docker registry.<br/> A detailed documentation of the image can be found [here](https://docs.stonebranch.com/confluence/display/UA68/Docker+Containers)\[1\]. <br/> Once a pod, and respectively the sidecar container, are started, the Universal OPENSHIFT Agent of the container automatically registers to a Universal Controller agent cluster dedicated to the application.<br/>  Only a single outbound port is opened from the pod to the OMS (Controller message bus). No inbound port to OPENSHIFT is required. For each application, one pre-configured Universal Agent cluster is created, containing the Universal OPENSHIFT agents of all started instances of the application.</br>The example in Figure 1 shows two applications:<br/>  1.newsflash<br/>  2.MyXYZ - Web<br/>  Each instance of an application is represented by one pod.<br/>  As soon as the Universal OPENSHIFT Agent of the sidecar container is assigned to the related Universal Controller agent cluster, all related pods can send and receive files from/to any other Universal Agent installed on any server. In addition, the application running in the pod can be scheduled like any other application, enabling it to be included in any automated business process.<br/>  The Universal Agent cluster supports file transfers to just one agent (pod), or to all agents (i.e. started pods related to an application) in the Universal Agent cluster.<br/> |
 
 * * *
@@ -216,10 +214,8 @@ The setup consists of only three steps:
 
 1.  Configure the file transfer workflow using the Universal Controller
     Web-GUI.
-
 2.  Add the Universal Sidecar container to the application deployment
     script.
-
 3.  Deploy the pod to OPENSHIFT and scale up or down as required.
 
 Prerequisites
