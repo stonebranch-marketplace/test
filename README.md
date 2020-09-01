@@ -64,8 +64,8 @@ Table of Contents {#table-of-contents .list-paragraph}
 
 [5. About Stonebranch](#about-stonebranch)
 
-1 Introduction
-==============
+Introduction
+============
 
 This start-up guide will describe a use case for how to securely
 transfer business data located on an on-premise Linux server to an
@@ -80,8 +80,8 @@ on OPENSHIFT, and vice versa. For more info, refer to the solution paper
 Paper](https://www.stonebranch.com/solutions/hybrid-cloud-file-transfers/)
 \[8\].
 
-1.1 Use Case Description
-------------------------
+Use Case Description
+--------------------
 
 To improve scalability, reduce resource consumption and shorten the time
 to develop, test, and roll-out new applications, many IT companies are
@@ -109,8 +109,8 @@ containing a web server instance started for the news-flash application
 in OPENSHIFT. As a result, all users connected to the new-flash
 application will see the new published webpage information.
 
-1.2 Key features
-----------------
+Key features
+------------
 
 This start-up use case focuses on file transfer from an on-premise
 server to a group of pods. The solution can also support many additional
@@ -137,8 +137,8 @@ scenarios. The following are its key features:
 
 -   High availability
 
-1.3 Solution Architecture
--------------------------
+Solution Architecture
+---------------------
 
 The Universal Automation Center (UAC) is a web-based enterprise
 scheduler, generally available as SaaS in the Cloud or on-premise.
@@ -166,14 +166,14 @@ For applications that provide an API like SAP, databases, cloud storage
 services, etc., no agent is required, as they are scheduled via their
 corresponding API.
 
-1.4 General Description of File Transfer Process
-------------------------------------------------
+General Description of File Transfer Process
+---------------------------------------------
 
 The architecture below outlines how data is transferred from an
 on-premise server to all instances of an application running on
 OPENSHIFT. A transfer from the mainframe is performed in a similar way.
 
-### 1.4.1 Graphic Overview
+### Graphic Overview
 
 ![](image/image1.png)
 
@@ -323,7 +323,7 @@ a)  Define a new Agent cluster for the OPENSHIFT application
 
 b)  Configure the file transfer task.
 
-###  Define a new Agent Cluster for the OPENSHIFT application "newsflash"
+### Define a new Agent Cluster for the OPENSHIFT application "newsflash"
 
 An agent cluster must be configured in Universal Controller for each
 application in OPENSHIFT. When a pod is started for an application in
@@ -337,8 +337,7 @@ register is called:
 
 -   *AGENT_CLUSTER_APP_NEWSFLASH*
 
-![](media/image6.png){width="6.294444444444444in"
-height="2.1180555555555554in"}
+![](image/image3.png)
 
 ### Configure the File Transfer Task
 
@@ -346,15 +345,13 @@ A new task needs to be configured for transferring the files from the
 on-premise Linux server to all agents assigned to the Universal
 Controller agent cluster.
 
-![](media/image7.png){width="6.294444444444444in" height="3.9125in"}
+![](image/image4.png)
 
 File transfer task script:
 
-![](media/image8.png){width="6.294444444444444in"
-height="1.7986111111111112in"}
+![](image/image5.png)
 
-Source Linux Server: *192.168.88.40* (adjust according to your Linux
-server)
+Source Linux Server: *192.168.88.40* (adjust according to your Linux server)
 
 Source Folder Linux Server: */home/nils/demo/out*
 
@@ -362,8 +359,7 @@ Files to Transfer: *index.html, RedHat.png*
 
 Destination Agent Cluster: *AGENT_CLUSTER_APP_NEWSFLASH*
 
-Destination Folder in the Pod: */ss/ (this is the mounted pod
-directory)*
+Destination Folder in the Pod: */ss/ (this is the mounted pod directory)*
 
 The export files of the file transfer task can be found here \[6\].
 
@@ -376,22 +372,22 @@ To add the Universal OPENSHIFT Agent as sidecar container to your
 application, you need to add the following section to your application
 deployment YAML file:
 
-![](media/image9.png){width="6.427308617672791in"
-height="1.8752679352580928in"}
+![](image/image6.png)
+
 
 Configure the following three parameters in the deployment file:
 
-  Parameter          Description
-  ------------------ ------------------------------------------------------------------------------------------------------------------------------
-  UAGAENGTCLUSTERS   Name of the OPENSHIFT Application ( needs to be the same name as the Universal Controller Agent cluster configured in 2.3.1.
-  UAGOMSSERVERS      IP and PORT of the Universal Controller Message Middleware OMS
-  UDM_LICENSE        Universal Agent License Key for File Transfer\*
+| **Parameter** | **Description** |
+| --- | --- |
+|**UAGAENGTCLUSTERS**|  Name of the OPENSHIFT Application ( needs to be the same name as the Universal Controller Agent cluster configured in 2.3.1.) | 
+|**UAGOMSSERVERS**| IP and PORT of the Universal Controller Message Middleware OMS | 
+|**UDM_LICENSE**|  Universal Agent License Key for File Transfer* | 
+
+* * *
 
 \*Note: A 30 day demo license key can be obtained from
 [Stonebranch](https://www.stonebranch.com/contact/) \[5\].
 
-**\
-**
 
 **Configure a Shared Folder for Application and Sidecar Containers**
 
@@ -400,15 +396,13 @@ the application in the pod, you need to create a shared folder between
 the application and the sidecar container with the Universal OPENSHIFT
 Agent.
 
-![](media/image10.png){width="7.259739720034996in"
-height="6.656404199475066in"}
+![](images/image7.png)
 
 The following screenshot shows the complete deployment script,
 consisting of the OPENSHIFT web application based on an NGINX web server
 and the Universal Agent as a sidecar container.
 
-![](media/image11.png){width="7.280240594925634in"
-height="7.006493875765529in"}
+![](images/image8.png)
 
 The file can be downloaded from GITHUB \[6\].
 
@@ -417,18 +411,14 @@ The file can be downloaded from GITHUB \[6\].
 To make the newsflash application available outside OPENSHIFT, you need
 to create a Service with a NodePort.
 
-![](media/image12.png){width="6.445352143482065in"
-height="5.655844269466317in"}
+![](image/image9.png)
 
-![](media/image13.png){width="6.272726377952756in"
-height="3.6144969378827647in"}
+![](image/image10.png)
 
 The Newsflash application will then be accessible via the following IP:
 
 (Note the host IP can be retrieved on a CRC-based OPENSHIFT install via
-the command:
-
-*crc ip*)
+the command: *crc ip*)
 
 In the described example it is: http://192.168.130.11:31510/
 
@@ -438,8 +428,7 @@ Deploy the OPENSHIFT Application
 To deploy the application on OPENSHIFT, you only need to deploy the
 deployment file in the 'Deployment Configs' screen (see below).
 
-![](media/image14.png){width="6.1298698600174975in"
-height="8.075218722659667in"}
+![](images/image11.png)
 
 In the deployment config file, we defined three replicas. This means
 that once we press the 'Create Deployment Config' button, three
@@ -453,14 +442,12 @@ in the Universal Controller.
 In the following screenshot, you can see the three started pods in
 OPENSHIFT:
 
-![](media/image15.png){width="6.233010717410323in"
-height="3.2077930883639545in"}
+![](images/image12.png)
 
 ...as well as the related Universal OPENSHIFT Agents, which have
 registered automatically to the Universal Controller agent cluster:
 
-![](media/image16.png){width="6.294444444444444in"
-height="1.9361111111111111in"}
+![](images/image13.png)
 
 **Auto Scaling of Pod:**
 
@@ -481,11 +468,9 @@ pictures from the on-premise Linux server to all started pods of the
 newsflash application. In this example, we triggered the file transfer
 manually.
 
-![](media/image17.png){width="6.294444444444444in"
-height="3.9402777777777778in"}
+![](images/image14.png)
 
-![](media/image18.png){width="6.294444444444444in"
-height="0.8611111111111112in"}
+![](images/image15.png)
 
 In the screenshot above, you can see that three file transfers were
 launched. This is because the Universal Controller agent cluster
@@ -494,13 +479,11 @@ contained three agents, one for each started pod.
 As result, the files are transferred from the Linux Server to all
 assigned pods and the homepage is updated with the new data:
 
-![](media/image19.png){width="4.493506124234471in"
-height="2.05588801399825in"}
+![](images/image16.png)
 
 The new data can also be viewed in all PODs directly:
 
-![](media/image20.png){width="6.294444444444444in"
-height="3.6444444444444444in"}
+![](images/image17.png)
 
 Options to Trigger the File Transfer Scenario
 ---------------------------------------------
@@ -563,42 +546,23 @@ secure file transfer to or from any of your OPENSHIFT applications.
 Document References
 ===================
 
-+----------------------------------+----------------------------------+
-| Ref\#                            | Description                      |
-+==================================+==================================+
-| 1.  *https:/                     | OPENSHIFT Agent documentation    |
-| /docs.stonebranch.com/confluence |                                  |
-| /display/UA68/Docker+Containers* |                                  |
-+----------------------------------+----------------------------------+
-| 2.  *ht                          | Link to Free Trial for Universal |
-| tps://www.stonebranch.com/produc | Automation Center                |
-| ts/universal-automation-center/* |                                  |
-+----------------------------------+----------------------------------+
-| 3.  *https                       | RED HAT webpage to retrieve an   |
-| ://developers.redhat.com/product | OPENSHIFT Code Ready Container   |
-| s/codeready-containers/overview* | (CRC)                            |
-+----------------------------------+----------------------------------+
-| 4.  *https://docs.stonebranch.co | Universal Agent Installation     |
-| m/confluence/display/UA68/Univer |                                  |
-| sal+Agent+for+UNIX+Installation* |                                  |
-+----------------------------------+----------------------------------+
-| 5.  *https                       | Contact address to get a 30days  |
-| ://www.stonebranch.com/contact/* | license key for Universal Data   |
-|                                  | Mover                            |
-+----------------------------------+----------------------------------+
-| 6.  *.github link*               | Universal Controller File        |
-|                                  | Transfer task export ( xml)      |
-+----------------------------------+----------------------------------+
-| 7.  *. github link*              | POD deployment YAML file         |
-+----------------------------------+----------------------------------+
-| 8.  *htt                         | Hybrid Cloud File Transfer       |
-| ps://www.stonebranch.com/solutio | Solution Paper                   |
-| ns/hybrid-cloud-file-transfers/* |                                  |
-+----------------------------------+----------------------------------+
+| **Ref#** | **Description** |
+| --- | --- |
+| [1] https://docs.stonebranch.com/confluence/display/UA68/Docker+Containers | OPENSHIFT Agent documentation | 
+| [2] https://www.stonebranch.com/products/universal-automation-center/ | Link to Free Trial for Universal Automation Center | 
+| [3] https://developers.redhat.com/products/codeready-containers/overview |  RED HAT webpage to retrieve an OPENSHIFT Code Ready Container (CRC) |
+| [4] https://docs.stonebranch.com/confluence/display/UA68/Universal+Agent+for+UNIX+Installation |  Universal Agent Installation |
+| [5] https://www.stonebranch.com/contact/ |  Contact address to get a 30days license key for Universal Data Mover |
+| [6] .github link |  Universal Controller File Transfer task export ( xml) |
+| [7] . github link |  POD deployment YAML file  |
+| [8] https://www.stonebranch.com/solutions/hybrid-cloud-file-transfers/ |  Hybrid Cloud File Transfer Solution Paper |
+
+
 
 About Stonebranch
 =================
 
-  Company                                                                              About
-  ------------------------------------------------------------------------------------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![](media/image21.png){width="1.4784722222222222in" height="0.4128018372703412in"}   Stonebranch builds dynamic IT automation solutions that transform business IT environments from simple IT task automation into sophisticated, real-time business service automation, helping organizations achieve the highest possible Return on Automation. No matter the degree of automation, Stonebranch software is simple, modern and secure. Using its universal automation platform, enterprises can seamlessly orchestrate workloads and data across technology stacks and ecosystems. Headquartered in Atlanta, Georgia with points of contact and support throughout the Americas, Europe, and Asia, Stonebranch serves some of the world\'s largest financial, manufacturing, healthcare, travel, transportation, energy, and technology institutions. 
+| **Company** | **About** |
+| --- | --- |
+| ![](images/image18.png){width="1.4784722222222222in" height="0.4128018372703412in"} | Stonebranch builds dynamic IT automation solutions that transform business IT environments from simple IT task automation into sophisticated, real-time business service automation, helping organizations achieve the highest possible Return on Automation. No matter the degree of automation, Stonebranch software is simple, modern and secure. Using its universal automation platform, enterprises can seamlessly orchestrate workloads and data across technology stacks and ecosystems. Headquartered in Atlanta, Georgia with points of contact and support throughout the Americas, Europe, and Asia, Stonebranch serves some of the world's largest financial, manufacturing, healthcare, travel, transportation, energy, and technology institutions.  | 
+
