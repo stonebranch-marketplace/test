@@ -13,7 +13,7 @@ Table of Contents {#table-of-contents .list-paragraph}
 
 [1. Introduction 4](#_Toc49848860)
 
-    [1.1. Use Case Description 4](#use-case-description)
+   [1.1. Use Case Description 4](#use-case-description)
 
 [1.2. Key features 4](#key-features)
 
