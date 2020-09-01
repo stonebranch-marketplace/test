@@ -7,59 +7,52 @@ Securely Transfer Files to and from Applications Running on OPENSHIFT
 Table of Contents {#table-of-contents .list-paragraph}
 =================
 
- {#section .TOC-Heading}
 
-[Table of Contents 2](#table-of-contents)
+[Table of Contents](#table-of-contents)
 
-[1. Introduction 4](#_Toc49848860)
+[1. Introduction](#_Toc49848860)
+      [1.1. Use Case Description](#use-case-description)
 
-   [1.1. Use Case Description 4](#use-case-description)
+[1.2. Key features](#key-features)
 
-[1.2. Key features 4](#key-features)
+[1.3. Solution Architecture](#solution-architecture)
 
-[1.3. Solution Architecture 6](#solution-architecture)
+[1.4. General Description of File Transfer Process](#general-description-of-file-transfer-process)
+    [1.4.1. Graphic Overview](#graphic-overview)
+    [1.4.2. Process Steps](#process-steps)
 
-[1.4. General Description of File Transfer Process
-7](#general-description-of-file-transfer-process)
+[2. How to Get Started](#how-to-get-started)
 
-    [1.4.1. Graphic Overview 7](#graphic-overview)
+[2.1. Prerequisites](#prerequisites)
+    [2.1.1. Universal Automation Center](#universal-automation-center)
+    [2.1.2. Universal Data Mover License Key](#universal-data-mover-license-key)
+    [2.1.3. Universal Agent 6.8.x or Above](#universal-agent-6.8.x-or-above)
+    [2.1.4. OPENSHIFT 4.x](#openshift-4.x)
+    [2.1.5. Linux Server](#linux-server)
 
-    [1.4.2. Process Steps 8](#process-steps)
+[2.2. Configuration Steps](#configuration-steps)
 
-[2. How to Get Started 10](#how-to-get-started)
+[2.3. Set Up a File Transfer Task in Universal Controller](#set-up-a-file-transfer-task-in-universal-controller)
+    [2.3.1. Define a new Agent Cluster for the OPENSHIFT application "newsflash"](#define-a-new-agent-cluster-for-the-openshift-application-newsflash)
+    [2.3.2. Configure the File Transfer Task](#configure-the-file-transfer-task)
 
-[2.1. Prerequisites 10](#prerequisites)
+[2.4. Add the Universal Sidecar Container to the Application Deployment Script](#add-the-universal-sidecar-container-to-the-application-deployment-script)
 
-    [2.1.1. Universal Automation Center 10](#universal-automation-center)
-    [2.1.2. Universal Data Mover License Key 10](#universal-data-mover-license-key)
-    [2.1.3. Universal Agent 6.8.x or Above 11](#universal-agent-6.8.x-or-above)
-    [2.1.4. OPENSHIFT 4.x 11](#openshift-4.x)
-    [2.1.5. Linux Server 11](#linux-server)
+[2.5. Deploy the OPENSHIFT Application](#deploy-the-openshift-application)
 
-[2.2. Configuration Steps 11](#configuration-steps)
+[2.6. Running the File Transfer](#running-the-file-transfer)
 
-[2.3. Set Up a File Transfer Task in Universal Controller 11](#set-up-a-file-transfer-task-in-universal-controller)
+[2.7. Options to Trigger the File Transfer Scenario](#options-to-trigger-the-file-transfer-scenario)
 
-    [2.3.1. Define a new Agent Cluster for the OPENSHIFT application "newsflash" 12](#define-a-new-agent-cluster-for-the-openshift-application-newsflash)
-    [2.3.2. Configure the File Transfer Task 12](#configure-the-file-transfer-task)
+[2.8. Integration of File Transfer into Microservices Architectures](#integration-of-file-transfer-into-microservices-architectures)
 
-[2.4. Add the Universal Sidecar Container to the Application Deployment Script 14](#add-the-universal-sidecar-container-to-the-application-deployment-script)
+[2.9. Security and Auditability](#security-and-auditability)
 
-[2.5. Deploy the OPENSHIFT Application 19](#deploy-the-openshift-application)
+[3. Summary & Benefits](#_Toc49848884)
 
-[2.6. Running the File Transfer 21](#running-the-file-transfer)
+[4. Document References](#document-references)
 
-[2.7. Options to Trigger the File Transfer Scenario 22](#options-to-trigger-the-file-transfer-scenario)
-
-[2.8. Integration of File Transfer into Microservices Architectures 23](#integration-of-file-transfer-into-microservices-architectures)
-
-[2.9. Security and Auditability 23](#security-and-auditability)
-
-[3. Summary & Benefits 23](#_Toc49848884)
-
-[4. Document References 23](#document-references)
-
-[5. About Stonebranch 24](#about-stonebranch)
+[5. About Stonebranch](#about-stonebranch)
 
 Introduction
 ============
